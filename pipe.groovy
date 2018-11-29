@@ -15,7 +15,6 @@ pipeline {
         }
         stage('ansible_build') {
             steps {
-                echo "Hello Ansible!"
                 ansiblePlaybook('infra-ovh-ansible.yaml') {
                     //inventoryPath('hosts.ini')
                     //ansibleName('1.9.4')

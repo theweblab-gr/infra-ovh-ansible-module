@@ -14,29 +14,29 @@ pipeline {
             }
         }
         stage('ansible_build') {
-steps {
-
-
-    ansibleAdHoc(String module, String command) {
-        ansibleName(String name)
-        inventoryPath(String path)
-        inventoryContent(String content, boolean dynamic = false)
-        credentialsId(String id)
-        hostPattern(String pattern)
-        become(boolean become = true)
-        becomeUser(String user = 'root')
-        sudo(boolean sudo = true)
-        sudoUser(String user = 'root')
-        forks(int forks = 5)
-        unbufferedOutput(boolean unbufferedOutput = true)
-        colorizedOutput(boolean colorizedOutput = false)
-        hostKeyChecking(boolean hostKeyChecking = false)
-        additionalParameters(String params)
-        extraVars {
-            extraVar(String key, String value, boolean hidden)
-        }
-    }
-}
+            steps {
+                ansiblePlaybook('infra-ovh-ansible.yaml') {
+                    //inventoryPath('hosts.ini')
+                    //ansibleName('1.9.4')
+                    //limit('retry.limit')
+                    tags('ovh-servers-list')
+                    //skippedTags('three')
+                    //startAtTask('task')
+                   // credentialsId('credsid')
+                   // become(true)
+                   // becomeUser("user")
+                   // forks(6)
+                   // unbufferedOutput(false)
+                    colorizedOutput(true)
+                    disableHostKeyChecking(true)
+                    //additionalParameters('params')
+                    extraVars {
+                        extraVar ("application_key","value",true)
+                        extraVar ("application_secret","value",true)
+                        extraVar ("consumer_key","value",true)
+                    }
+                }
+            }
         }
     }
 }

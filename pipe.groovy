@@ -15,26 +15,19 @@ pipeline {
         }
         stage('ansible_build') {
             steps {
-                ansiblePlaybook('infra-ovh-ansible.yaml') {
-                    //inventoryPath('hosts.ini')
-                    //ansibleName('1.9.4')
-                    //limit('retry.limit')
-                    tags('ovh-servers-list')
-                    //skippedTags('three')
-                    //startAtTask('task')
-                   // credentialsId('credsid')
-                   // become(true)
-                   // becomeUser("user")
-                   // forks(6)
-                   // unbufferedOutput(false)
-                    colorizedOutput(true)
-                    disableHostKeyChecking(true)
-                    //additionalParameters('params')
-                    extraVars {
-                        extraVar ("application_key","value",true)
-                    }
-                }
-            }
+    ansiblePlaybook('path/playbook.yml') {
+        inventoryPath('hosts.ini')
+        ansibleName('1.9.4')
+        tags('one,two')
+        credentialsId('credsid')
+        become(true)
+        becomeUser("user")
+        extraVars {
+            extraVar("key1", "value1", false)
+            extraVar("key2", "value2", true)
+        }
+    }
+}
         }
     }
 }

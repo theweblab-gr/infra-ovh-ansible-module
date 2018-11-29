@@ -32,8 +32,6 @@ pipeline {
                     //additionalParameters('params')
                     extraVars {
                         extraVar ("application_key","value",true)
-                        extraVar ("application_secret","value",true)
-                        extraVar ("consumer_key","value",true)
                     }
                 }
             }

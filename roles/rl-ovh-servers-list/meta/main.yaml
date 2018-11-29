@@ -1,0 +1,16 @@
+# file: roles/rl-ovh-servers-list/meta/main.yml
+---
+galaxy_info:
+  author: TWL
+  license: ""
+  min_ansible_version: 1.4
+  platforms:
+    - name: EL
+      versions:
+      - all
+    - name: Windows
+      versions:
+      - all
+  categories:
+     - INFRA
+dependencies: []

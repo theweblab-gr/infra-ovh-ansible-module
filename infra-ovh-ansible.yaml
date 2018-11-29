@@ -1,0 +1,15 @@
+# file: infra-ovh-ansible.yaml
+# --extra-vars "targeted_hosts=st-redhat"
+# --tags servers-list, templates-list
+
+- hosts: all
+  roles:
+    - { role: rl-ovh-servers-list, tags: ['ovh-servers-list'] }
+    - { role: rl-ovh-templates-list, tags: ['ovh-templates-list'] }
+
+  vars:
+      # Use
+      endpoint: 'ovh-eu'
+      application_key: '<YOUR APPLICATION KEY>'
+      application_secret: '<YOUR APPLICATIOM SECRET>'
+      consumer_key: '<YOUR CONSUMER KEY>'

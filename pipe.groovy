@@ -14,7 +14,9 @@ pipeline {
             }
         }
         stage('ansible_build') {
-            steps {
+steps {
+
+
     ansibleAdHoc(String module, String command) {
         ansibleName(String name)
         inventoryPath(String path)

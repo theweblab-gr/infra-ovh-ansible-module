@@ -12,7 +12,23 @@ properties ([
               defaultSlaves: ['Ansible_1'],
               description: 'Jenkins node where the job will run.',
               nodeEligibility: [$class: 'AllNodeEligibility'],
-              triggerIfResult: 'multiSelectionDisallowed'],
+              triggerIfResult: 'multiSelectionDisallowed'
+       ],
+       [$class: 'EnvInjectJobProperty',
+              info: [
+                     loadFilesFromMaster: false,
+                     propertiesContent:
+'''
+# Service variable to check whether this groovy pipeline has been configured
+IS_PIPELINE_CONFIGURED=true
+DRY_RUN=false
+''',
+                     secureGroovyScript: [classpath: [], sandbox: false, script: '']
+                     ],
+              keepBuildVariables: true,
+              keepJenkinsSystemVariables: true,
+              on: true
+       ],
        booleanParam(
               name: "BREAK_ON_LLD_ERRORS",
               defaultValue: false,
@@ -48,9 +64,7 @@ node(Slave_Node){
               sh "ls -al"
               checkout scm
               sh "ls -al"
-              withEnv(['PATH=home/jnk_slv_usr/ansible_2_5/bin:$PATH']) {
-                     ansiblePlaybook colorized: true, disableHostKeyChecking: true, inventory: 'hosts', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list', extras: '-e application_key="provide_ovh_application_key"'
-              }
+              ansiblePlaybook colorized: true, disableHostKeyChecking: true, inventory: 'hosts', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list', extras: '--extra-vars "application_key='provide_ovh_app' application_secret='provide_secrete'"'
 
 
         }

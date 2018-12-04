@@ -15,10 +15,6 @@ properties ([
               triggerIfResult: 'multiSelectionDisallowed'
        ],
        [$class: 'EnvInjectJobProperty',
-              info: [
-                     loadFilesFromMaster: false,
-                     secureGroovyScript: [classpath: [], sandbox: false, script: '']
-                     ],
               keepBuildVariables: true,
               keepJenkinsSystemVariables: true,
               on: true

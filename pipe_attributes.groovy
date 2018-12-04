@@ -13,10 +13,6 @@ properties ([
               description: 'Jenkins node where the job will run.',
               nodeEligibility: [$class: 'AllNodeEligibility'],
               triggerIfResult: 'multiSelectionDisallowed'],
-       choice(
-              name: "NODE_LABEL",
-              choices: "Ansible_1\nAnsible_2",
-              description: "Jenkins node where the job will run."),
        booleanParam(
               name: "BREAK_ON_LLD_ERRORS",
               defaultValue: false,

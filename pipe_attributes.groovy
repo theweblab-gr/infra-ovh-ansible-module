@@ -18,14 +18,39 @@ properties ([
 
 
 node(node_label){
-    try{
+       try{
         // setup PYTHONPATH
         //def pythonpath = sh (script: 'echo "$(pwd)/scripts"', returnStdout: true).trim()
         //env.PYTHONPATH = pythonpath
 
-        stage('First Stage'){
-            echo "Starting at slave '"
-            echo "Slave Label: '${NODE_LABEL}' '"
+              stage('First Stage'){
+                     echo "Starting at slave '"
+                     echo "Slave Label: '${NODE_LABEL}' '"
+
+                     ansiblePlaybook('infra-ovh-ansible.yaml') {
+                            inventoryPath('hosts')
+                            // ansibleName('1.9.4')
+                            // limit('retry.limit')
+                            tags('ovh-servers-list')
+                            //skippedTags('three')
+                            //startAtTask('task')
+                            // credentialsId('credsid')
+                            // become(true)
+                            // becomeUser("user")
+                            // forks(6)
+                            // unbufferedOutput(false)
+                            colorizedOutput(true)
+                            disableHostKeyChecking(true)
+                            //additionalParameters('params')
+                            extraVars {
+                                   extraVar ("application_key","value",true)
+                                   extraVar ("application_secret","value",true)
+                                   extraVar ("consumer_key","value",true)
+                            }
+                     }
+
+
+
 
         }
         stage('cleanup'){

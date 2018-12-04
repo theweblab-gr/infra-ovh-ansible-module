@@ -1,57 +1,53 @@
+#!groovy
+
 properties ([
     buildDiscarder(logRotator(artifactDaysToKeepStr: "", artifactNumToKeepStr: "", daysToKeepStr: "15",
                               numToKeepStr: "10")
                   ),
     disableConcurrentBuilds(),
     parameters([
-        choice(name: "NODE_LABEL", choices: "Ansible_1\nAnsible_2",
-               description: "Jenkins node where the job will run."),
-        booleanParam(name: "BREAK_ON_LLD_ERRORS", defaultValue: false,
-            description: "Break the build if errors are found in the Infrastructure LLD"),
-        credentials(name: "Git_Creds", required: false,
-                    credentialType: "com.cloudbees.plugins.credentials.impl.CertificateCredentialsImpl",
-                    defaultValue: "github_theweblab_ovh",
-                    description: "Credentials for connecting to git."),
+	[$class: 'NodeParameterDefinition',
+              name: 'Slave_Node',
+              allowedSlaves: ['Ansible_1'],
+              defaultSlaves: ['Ansible_1'],
+              description: 'Jenkins node where the job will run.',
+              nodeEligibility: [$class: 'AllNodeEligibility'],
+              triggerIfResult: 'multiSelectionDisallowed'],
+       choice(
+              name: "NODE_LABEL",
+              choices: "Ansible_1\nAnsible_2",
+              description: "Jenkins node where the job will run."),
+       booleanParam(
+              name: "BREAK_ON_LLD_ERRORS",
+              defaultValue: false,
+              description: "Break the build if errors are found in the Infrastructure LLD"),
+       credentials(
+              name: "Git_Creds",
+              required: false,
+              credentialType: "com.cloudbees.plugins.credentials.impl.CertificateCredentialsImpl",
+              defaultValue: "github_theweblab_ovh",
+              description: "Credentials for connecting to git."),
     ]),
 ])
 
-
-
-node(node_label){
+node(Slave_Node){
        try{
         // setup PYTHONPATH
         //def pythonpath = sh (script: 'echo "$(pwd)/scripts"', returnStdout: true).trim()
         //env.PYTHONPATH = pythonpath
 
-              stage('First Stage'){
-                     echo "Starting at slave '"
-                     echo "Slave Label: '${NODE_LABEL}' '"
-
-                     ansiblePlaybook('infra-ovh-ansible.yaml') {
-                            inventoryPath('hosts')
-                            // ansibleName('1.9.4')
-                            // limit('retry.limit')
-                            tags('ovh-servers-list')
-                            //skippedTags('three')
-                            //startAtTask('task')
-                            // credentialsId('credsid')
-                            // become(true)
-                            // becomeUser("user")
-                            // forks(6)
-                            // unbufferedOutput(false)
-                            colorizedOutput(true)
-                            disableHostKeyChecking(true)
-                            //additionalParameters('params')
-                            extraVars {
-                                   extraVar ("application_key","value",true)
-                                   extraVar ("application_secret","value",true)
-                                   extraVar ("consumer_key","value",true)
-                            }
-                     }
-
-
-
-
+       stage('First Stage'){
+              echo "Starting at slave '"
+              echo "Slave Label: '${Slave_Node}' '"
+              echo "Hello World!"
+              sh "echo Hello from the shell"
+              sh "hostname"
+              sh "uptime"
+              sh "ansible --version"
+              sh "which ansible -a"
+              sh "type ansible"
+              sh "echo $PATH"
+              sh "ls -al"
         }
         stage('cleanup'){
             deleteDir()

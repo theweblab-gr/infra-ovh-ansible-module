@@ -46,6 +46,8 @@ node(Slave_Node){
               sh "ls -al"
               checkout scm
               sh "ls -al"
+              ansiblePlaybook colorized: true, disableHostKeyChecking: true, inventory: 'hosts', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list', extras: '-e application_key="provide_ovh_application_key"'
+
         }
         stage('cleanup'){
             deleteDir()

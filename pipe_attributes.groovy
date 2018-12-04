@@ -42,6 +42,8 @@ node(Slave_Node){
               sh "ansible --version"
               sh "which ansible -a"
               sh "type ansible"
+              sh "which ansible-playbook -a"
+              sh "type ansible-playbook"
               sh "echo $PATH"
               sh "ls -al"
               checkout scm

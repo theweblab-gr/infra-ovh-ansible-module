@@ -17,12 +17,6 @@ properties ([
        [$class: 'EnvInjectJobProperty',
               info: [
                      loadFilesFromMaster: false,
-                     propertiesContent:
-'''
-# Service variable to check whether this groovy pipeline has been configured
-IS_PIPELINE_CONFIGURED=true
-DRY_RUN=false
-''',
                      secureGroovyScript: [classpath: [], sandbox: false, script: '']
                      ],
               keepBuildVariables: true,

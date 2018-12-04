@@ -44,6 +44,8 @@ node(Slave_Node){
               sh "type ansible"
               sh "echo $PATH"
               sh "ls -al"
+              checkout scm
+              sh "ls -al"
         }
         stage('cleanup'){
             deleteDir()

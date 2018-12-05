@@ -5,6 +5,6 @@
     var: ansible_distribution
 
 - name: Get list of servers
-  command: hostname
+  ovh: service='list' name='dedicated'
   register: servers
 

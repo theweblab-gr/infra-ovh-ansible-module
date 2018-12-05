@@ -1,0 +1,6 @@
+- hosts: 127.0.0.1
+  tasks:
+      - name: Create file
+        file:
+            path: /tmp/test_simple_ansible_playbook
+            state: touch

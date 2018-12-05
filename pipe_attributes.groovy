@@ -83,5 +83,6 @@ node(Slave_Node){
         // Gracefully handle unexpected exceptions & report build as failure
         echo "Exception during pipeline build. Review the following error: ${err}"
         currentBuild.result = 'FAILURE'
+        error(err)
     }
 }

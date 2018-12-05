@@ -64,7 +64,8 @@ node(Slave_Node){
               sh "ls -al"
               checkout scm
               sh "ls -al"
-              ansiblePlaybook colorized: true, disableHostKeyChecking: true, inventory: 'hosts', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list'
+              ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', inventory: 'hosts', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list'
+
 
 
         }

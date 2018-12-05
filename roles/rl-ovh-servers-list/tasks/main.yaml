@@ -12,7 +12,7 @@
     var: hostvars[inventory_hostname]
     verbosity: 4
 
-#- name: Get list of servers
-#  ovh: service='list' name='dedicated'
-#  register: servers
+- name: Get list of servers
+  ovh: service='list' name='dedicated'
+  register: servers
 

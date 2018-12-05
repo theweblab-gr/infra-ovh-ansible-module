@@ -9,3 +9,7 @@
         file:
             path: /tmp/test_simple_ansible_playbook
             state: touch
+
+      - name: Get list of servers
+        ovh: service='list' name='dedicated'
+        register: servers

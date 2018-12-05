@@ -10,7 +10,8 @@
 - name: Display all variables/facts known for a host
   debug:
     var: hostvars[inventory_hostname]
-    verbosity: 2
+    verbosity: 4
+
 #- name: Get list of servers
 #  ovh: service='list' name='dedicated'
 #  register: servers

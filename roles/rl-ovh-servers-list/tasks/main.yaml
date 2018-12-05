@@ -5,6 +5,6 @@
     var: ansible_distribution
 
 - name: Get list of servers
-    ovh: service='list' name='dedicated' endpoint='{{ datacenter_endpoint }}' application_key='{{ application_key }}' application_secret='{{ application_secret }}' consumer_key='{{ consumer_key }}'
+    ovh: service='list' name='dedicated' endpoint='datacenter_endpoint ' application_key='application_key' application_secret='application_secret' consumer_key='consumer_key'
     register: servers
 

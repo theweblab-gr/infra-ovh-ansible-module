@@ -4,7 +4,7 @@
 - debug:
     var: ansible_distribution
 
-- name: Get list of servers
-  ovh: service='list' name='dedicated'
-  register: servers
+#- name: Get list of servers
+#  ovh: service='list' name='dedicated'
+#  register: servers
 

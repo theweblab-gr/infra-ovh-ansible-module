@@ -4,14 +4,10 @@
 - debug:
     var: ansible_distribution
 
-
-- name: Check Ansible connectivity
-  ping:
-
 - name: Get list of servers
-  ovh: service='list' name='dedicated' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
-  register: servers
+    ovh: service='list' name='dedicated' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
+    register: servers
 
 - name: Get list of personal templates
-  ovh: service='list' name='templates' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
-  register: templates
+    ovh: service='list' name='templates' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
+    register: templates

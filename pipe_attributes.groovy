@@ -39,6 +39,12 @@ DRY_RUN=false
                      credentialType: "com.cloudbees.plugins.credentials.impl.CertificateCredentialsImpl",
                      defaultValue: "github_theweblab_ovh",
                      description: "Credentials for connecting to git."),
+              credentials(
+                     name: "Target_Host_Creds",
+                     required: false,
+                     credentialType: "com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl",
+                     defaultValue: "",
+                     description: "Credentials for connecting to target host."),
        ]),
 ])
 
@@ -64,7 +70,7 @@ node(Slave_Node){
               sh "ls -al"
               checkout scm
               sh "ls -al"
-              ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', inventory: 'hosts', playbook: 'sample_playbook.yalm'
+              ansiblePlaybook credentialsId: '${Target_Host_Creds}', colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', inventory: 'hosts', playbook: 'sample_playbook.yalm'
 
 
 

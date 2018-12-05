@@ -3,6 +3,7 @@
 # --tags servers-list, templates-list
 
 - hosts: all
+  connection: local
   roles:
     - { role: rl-ovh-servers-list, tags: ['ovh-servers-list'] }
     - { role: rl-ovh-templates-list, tags: ['ovh-templates-list'] }

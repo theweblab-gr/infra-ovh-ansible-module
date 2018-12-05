@@ -71,7 +71,8 @@ node(Slave_Node){
               checkout scm
               sh "ls -al"
               ansiblePlaybook credentialsId: '${Target_Host_Creds}', colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', inventory: 'hosts', playbook: 'sample_playbook.yalm'
-
+              echo "Executing ansible playbook from sh"
+              sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -k sample_playbook_local.yalm "
 
 
         }

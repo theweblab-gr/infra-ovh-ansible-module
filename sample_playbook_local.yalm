@@ -1,0 +1,11 @@
+---
+
+- name: run the playbook tasks on the localhost
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+
+      - name: Create file  /tmp/test_simple_ansible_playbook
+        file:
+            path: /tmp/test_simple_ansible_playbook
+            state: touch

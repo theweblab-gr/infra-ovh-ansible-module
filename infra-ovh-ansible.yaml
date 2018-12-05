@@ -10,7 +10,7 @@
 
   vars:
       # Use
-      endpoint: 'ovh-eu'
+      endpoint: 'end_point'
       application_key: '<YOUR APPLICATION KEY>'
       application_secret: '<YOUR APPLICATIOM SECRET>'
       consumer_key: '<YOUR CONSUMER KEY>'

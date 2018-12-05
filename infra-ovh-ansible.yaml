@@ -2,7 +2,7 @@
 # --extra-vars "targeted_hosts=st-redhat"
 # --tags servers-list, templates-list
 
-- hosts: all
+- hosts: 127.0.0.1
   connection: local
   roles:
     - { role: rl-ovh-servers-list, tags: ['ovh-servers-list'] }

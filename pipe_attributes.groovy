@@ -72,7 +72,7 @@ DRY_RUN=false
 ])
 
 node(Slave_Node){
-
+       try{
         // setup PYTHONPATH
         //def pythonpath = sh (script: 'echo "$(pwd)/scripts"', returnStdout: true).trim()
         //env.PYTHONPATH = pythonpath
@@ -83,7 +83,7 @@ node(Slave_Node){
         [$class: 'StringBinding', credentialsId: ${OVH_CONSUMER_KEY}, variable: 'consumer_key']
     ]
 
-
+withCredentials(creds) {
        stage('First Stage'){
               echo "Starting at slave '"
               echo "Slave Label: '${Slave_Node}' '"
@@ -100,9 +100,9 @@ node(Slave_Node){
               sh "ls -al"
               checkout scm
               sh "ls -al"
-              withCredentials(creds) {
+
                      sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook infra-ovh-ansible.yaml --tags ovh-servers-list,ovh-templates-list -vv --extra-vars  'datacenter_endpoint=${OVH_DATACENTER_ENDPOINT} application_key=${app_key} application_secret=${app_secret} consumer_key=${consumer_key}'  "
-              }
+
             //  ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list'
 
               //ansiblePlaybook credentialsId: '${Target_Host_Creds}', colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', inventory: 'hosts', playbook: 'sample_playbook.yalm'
@@ -111,9 +111,16 @@ node(Slave_Node){
 
 
         }
+
+       }
         stage('cleanup'){
             deleteDir()
         }
 
-
+    } catch (Exception err) {
+        // Gracefully handle unexpected exceptions & report build as failure
+        echo "Exception during pipeline build. Review the following error: ${err}"
+        currentBuild.result = 'FAILURE'
+        error(err)
+    }
 }

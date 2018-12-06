@@ -72,7 +72,7 @@ DRY_RUN=false
 ])
 
 node(Slave_Node){
-       try{
+
         // setup PYTHONPATH
         //def pythonpath = sh (script: 'echo "$(pwd)/scripts"', returnStdout: true).trim()
         //env.PYTHONPATH = pythonpath
@@ -115,10 +115,5 @@ node(Slave_Node){
             deleteDir()
         }
 
-    } catch (Exception err) {
-        // Gracefully handle unexpected exceptions & report build as failure
-        echo "Exception during pipeline build. Review the following error: ${err}"
-        currentBuild.result = 'FAILURE'
-        error(err)
-    }
+
 }

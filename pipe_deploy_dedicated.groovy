@@ -85,8 +85,6 @@ node(Slave_Node){
                      string(credentialsId: "${OVH_CONSUMER_KEY}", variable: 'consumer_key')
 		]
 
-
-
         stage('First Stage'){
             echo "################ HOST INFO ################"
             echo "Starting at slave '"

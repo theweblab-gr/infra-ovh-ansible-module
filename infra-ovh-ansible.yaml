@@ -18,4 +18,3 @@
       dedicated_server_installation_template: '<OVH installation template>'
       dedicated_server_ovh_id: '<The ID of the dedicated server>'
       dedicated_server_hostname: '<the hostname that will be given to the server>'
-

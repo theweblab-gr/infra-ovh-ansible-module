@@ -83,7 +83,6 @@ node(Slave_Node){
         [$class: 'StringBinding', credentialsId: ${OVH_CONSUMER_KEY}, variable: 'consumer_key']
     ]
 
-withCredentials(creds) {
        stage('First Stage'){
               echo "Starting at slave '"
               echo "Slave Label: '${Slave_Node}' '"
@@ -112,7 +111,6 @@ withCredentials(creds) {
 
         }
 
-       }
         stage('cleanup'){
             deleteDir()
         }

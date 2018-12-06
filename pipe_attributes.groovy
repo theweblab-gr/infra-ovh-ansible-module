@@ -77,7 +77,11 @@ node(Slave_Node){
         //def pythonpath = sh (script: 'echo "$(pwd)/scripts"', returnStdout: true).trim()
         //env.PYTHONPATH = pythonpath
 
-       def creds = [usernamePassword(credentialsId: 'js1_slave', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]
+       def ovh_creds = [
+                     [string(credentialsId: 'soyoustart_master_infra_1_app_key', variable: 'app_key')]
+                     [string(credentialsId: 'soyoustart_master_infra_1_app_secret', variable: 'app_secret')]
+                     [string(credentialsId: 'soyoustart_master_infra_1_consumer_key', variable: 'consumer_key')]
+		]
 
        stage('First Stage'){
               echo "Starting at slave '"
@@ -95,9 +99,9 @@ node(Slave_Node){
               sh "ls -al"
               checkout scm
               sh "ls -al"
-
+              withCredentials(ovh_creds) {
                      sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook infra-ovh-ansible.yaml --tags ovh-servers-list,ovh-templates-list -vv --extra-vars  'datacenter_endpoint=${OVH_DATACENTER_ENDPOINT} application_key=${app_key} application_secret=${app_secret} consumer_key=${consumer_key}'  "
-
+              }
             //  ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list'
 
               //ansiblePlaybook credentialsId: '${Target_Host_Creds}', colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', inventory: 'hosts', playbook: 'sample_playbook.yalm'

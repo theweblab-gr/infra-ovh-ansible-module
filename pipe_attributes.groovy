@@ -50,6 +50,24 @@ DRY_RUN=false
                      credentialType: "com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl",
                      defaultValue: "",
                      description: "Credentials for connecting to target host."),
+              credentials(
+                     name: "OVH_APP_KEY",
+                     required: false,
+                     credentialType: "com.cloudbees.plugins.plaincredentials.impl.StringCredentialsImpl",
+                     defaultValue: "soyoustart_master_infra_1_app_key",
+                     description: "OVH Application Key"),
+              credentials(
+                     name: "OVH_APP_SECRET",
+                     required: false,
+                     credentialType: "com.cloudbees.plugins.plaincredentials.impl.StringCredentialsImpl",
+                     defaultValue: "soyoustart_master_infra_1_app_secret",
+                     description: "OVH Application Secret"),
+              credentials(
+                     name: "OVH_CONSUMER_KEY",
+                     required: false,
+                     credentialType: "com.cloudbees.plugins.plaincredentials.impl.StringCredentialsImpl",
+                     defaultValue: "soyoustart_master_infra_1_consumer_key",
+                     description: "OVH Consumer Key."),
        ]),
 ])
 
@@ -76,7 +94,7 @@ node(Slave_Node){
               checkout scm
               sh "ls -al"
 
-              sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook infra-ovh-ansible.yaml --tags ovh-servers-list,ovh-templates-list -vv --extra-vars  'datacenter_endpoint=${OVH_DATACENTER_ENDPOINT} application_key=${OVH_DATACENTER_ENDPOINT} application_secret=${OVH_DATACENTER_ENDPOINT} consumer_key=${OVH_DATACENTER_ENDPOINT}'  "
+              sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook infra-ovh-ansible.yaml --tags ovh-servers-list,ovh-templates-list -vv --extra-vars  'datacenter_endpoint=${OVH_DATACENTER_ENDPOINT} application_key=${OVH_APP_KEY} application_secret=${OVH_APP_SECRET} consumer_key=${OVH_CONSUMER_KEY}'  "
 
             //  ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list'
 

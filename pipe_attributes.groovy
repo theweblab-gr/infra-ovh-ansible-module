@@ -77,11 +77,7 @@ node(Slave_Node){
         //def pythonpath = sh (script: 'echo "$(pwd)/scripts"', returnStdout: true).trim()
         //env.PYTHONPATH = pythonpath
 
-    def creds = [
-        [$class: 'StringBinding', credentialsId:'soyoustart_master_infra_1_app_key', variable: 'app_key']
-        [$class: 'StringBinding', credentialsId: 'soyoustart_master_infra_1_app_secret', variable: 'app_secret']
-        [$class: 'StringBinding', credentialsId: 'soyoustart_master_infra_1_consumer_key', variable: 'consumer_key']
-    ]
+
 
        stage('First Stage'){
               echo "Starting at slave '"

@@ -5,7 +5,7 @@
   ovh: service='list' name='dedicated' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
   register: servers
 
-- name: Wait until installation is finished
+- name: Check Server Status
   local_action:
     module: ovh
     service: status

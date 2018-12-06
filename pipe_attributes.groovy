@@ -79,8 +79,8 @@ node(Slave_Node){
 
        def ovh_creds = [
                      string(credentialsId: "${OVH_APP_KEY}", variable: 'app_key'),
-                     string(credentialsId: 'soyoustart_master_infra_1_app_secret', variable: 'app_secret'),
-                     string(credentialsId: 'soyoustart_master_infra_1_consumer_key', variable: 'consumer_key')
+                     string(credentialsId: "${OVH_APP_SECRET}", variable: 'app_secret'),
+                     string(credentialsId: "${OVH_CONSUMER_KEY}", variable: 'consumer_key')
 		]
 
 

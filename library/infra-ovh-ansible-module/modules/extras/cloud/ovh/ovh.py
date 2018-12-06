@@ -74,7 +74,7 @@ options:
               monitoring, add/removing a dedicated server from OVH monitoring
               install, install from a template
               status, used after install to know install status
-              list, get a list of personal dedicated servers, personal templates
+              list, get a list of personal dedicated servers, personal templates and ovh installationTemplate's
               template, create/delete an ovh template from a yaml file
               terminate, give back a dedicated server to OVH
     domain:
@@ -557,6 +557,21 @@ def listDedicated(ovhclient, module):
         module.fail_json(changed=False, msg="Failed to call OVH API: {0}".format(apiError))
     module.exit_json(changedFalse=False, objects=customlist)
 
+def listOVHInstallationTemplates(ovhclient, module):
+    customlist = []
+    try:
+        result = ovhclient.get('/dedicated/installationTemplate')
+    except APIError as apiError:
+        module.fail_json(changed=False, msg="Failed to call OVH API: {0}".format(apiError))
+    try:
+        for i in result:
+            if 'tmp-mgr' not in i:
+                customlist.append(i)
+    except APIError as apiError:
+        module.fail_json(changed=False, msg="Failed to call OVH API: {0}".format(apiError))
+    module.exit_json(changedFalse=False, objects=customlist)
+
+
 def listTemplates(ovhclient, module):
         customlist = []
         try:
@@ -623,6 +638,8 @@ def main():
             listDedicated(client, module)
         elif module.params['name'] == 'templates':
             listTemplates(client, module)
+        elif module.params['name'] == 'ovh_installation_templates':
+            listOVHInstallationTemplates(client, module)
         else:
             module.fail_json(changed=False, msg="%s not supported for 'list' service" % module.params['name'])
     elif module.params['service'] == 'template':

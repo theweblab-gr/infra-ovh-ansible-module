@@ -2,7 +2,7 @@
 ---
 
 - name: Get list of ovh installationTemplates
-  ovh: service='list' name='installationTemplate'
+  ovh: service='list' name='ovh_installation_templates'
   register: ovh_templates
 
 

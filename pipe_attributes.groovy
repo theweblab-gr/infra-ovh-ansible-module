@@ -71,7 +71,7 @@ node(Slave_Node){
               checkout scm
               sh "ls -al"
 
-              sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook infra-ovh-ansible.yaml --tags ovh-servers-list,ovh-templates-list -vv --extra-vars  application_key='provide_ovh_app' application_secret='provide_secrete'  "
+              sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook infra-ovh-ansible.yaml --tags ovh-servers-list,ovh-templates-list -vv --extra-vars  application_key='provide_ovh_app',application_secret='provide_secrete'  "
 
             //  ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible_1', playbook: 'infra-ovh-ansible.yaml', tags: 'ovh-servers-list'
 

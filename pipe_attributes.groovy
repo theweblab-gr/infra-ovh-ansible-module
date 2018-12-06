@@ -78,7 +78,7 @@ node(Slave_Node){
         //env.PYTHONPATH = pythonpath
 
        def ovh_creds = [
-                     string(credentialsId: 'soyoustart_master_infra_1_app_key', variable: 'app_key'),
+                     string(credentialsId: ${OVH_APP_KEY}, variable: 'app_key'),
                      string(credentialsId: 'soyoustart_master_infra_1_app_secret', variable: 'app_secret'),
                      string(credentialsId: 'soyoustart_master_infra_1_consumer_key', variable: 'consumer_key')
 		]

@@ -77,7 +77,7 @@ node(Slave_Node){
         //def pythonpath = sh (script: 'echo "$(pwd)/scripts"', returnStdout: true).trim()
         //env.PYTHONPATH = pythonpath
 
-
+       def creds = [usernamePassword(credentialsId: ${Target_Host_Creds}, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]
 
        stage('First Stage'){
               echo "Starting at slave '"

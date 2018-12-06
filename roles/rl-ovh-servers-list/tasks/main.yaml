@@ -13,6 +13,6 @@
     verbosity: 4
 
 - name: Get list of servers
-  ovh: service='list' name='dedicated' endpoint='soyoustart-eu' application_key='siGKuxM0z76QGlaL' application_secret='JHzCcEA6NP2hm9YEPT7xVs6wxspe5vlK' consumer_key='IC8AcCmrAzJ6PAL7TFKo5zUyTJIHnvWN'
+  ovh: service='list' name='dedicated'
   register: servers
 

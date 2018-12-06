@@ -9,10 +9,6 @@
     module: ovh
     service: status
     name: "{{ dedicated_server_ovh_id }}"
-    endpoint: "{{ datacenter_endpoint }}"
-    application_key: "{{ application_key }}"
-    application_secret: "{{ application_secret }}"
-    consumer_key: "{{ consumer_key }}"
   register: result
   until: result.msg.find("done") != -1
   retries: 150

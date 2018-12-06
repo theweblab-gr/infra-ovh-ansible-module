@@ -1,0 +1,7 @@
+# file: roles/rl-ovh-templates--list/tasks/main.yml
+---
+
+- name: Get list of templates
+  ovh: service='list' name='templates'
+  register: templates
+

@@ -1,0 +1,13 @@
+# file: roles/rl-ovh-templates--list/meta/main.yml
+---
+galaxy_info:
+  author: TWL
+  license: ""
+  min_ansible_version: 1.4
+  platforms:
+    - name: EL
+      versions:
+      - all
+  categories:
+     - INFRA
+dependencies: []

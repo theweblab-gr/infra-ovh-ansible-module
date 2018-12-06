@@ -2,7 +2,7 @@
 ---
 
 - name: Get list of ovh installationTemplates
-  ovh: service='list' name='ovh_installation_templates'
+  ovh: service='list' name='ovh_installation_templates' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
   register: ovh_templates
 
 

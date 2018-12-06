@@ -101,7 +101,7 @@ node(Slave_Node){
             echo "################ END OF HOST INFO ################"
             checkout scm
             withCredentials(ovh_creds) {
-                sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook infra-ovh-ansible.yaml --tags ${ROLES_TAGS} -vv --extra-vars  'datacenter_endpoint=${OVH_DATACENTER_ENDPOINT} application_key=${app_key} application_secret=${app_secret} consumer_key=${consumer_key} dedicated_server_installation_template=${OVH_TEMPLATE} dedicated_server_ovh_id=${SERVER_ID} dedicated_server_hostname=${SERVER_HOSTNAME}' "
+            //    sh "ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook infra-ovh-ansible.yaml --tags ${ROLES_TAGS} -vv --extra-vars  'datacenter_endpoint=${OVH_DATACENTER_ENDPOINT} application_key=${app_key} application_secret=${app_secret} consumer_key=${consumer_key} dedicated_server_installation_template=${OVH_TEMPLATE} dedicated_server_ovh_id=${SERVER_ID} dedicated_server_hostname=${SERVER_HOSTNAME}' "
             }
         }
 

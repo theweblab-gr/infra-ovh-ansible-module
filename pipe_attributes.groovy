@@ -78,9 +78,9 @@ node(Slave_Node){
         //env.PYTHONPATH = pythonpath
 
     def creds = [
-        [$class: 'StringBinding', credentialsId: ${OVH_APP_KEY}, variable: 'app_key']
-        [$class: 'StringBinding', credentialsId: ${OVH_APP_SECRET}, variable: 'app_secret']
-        [$class: 'StringBinding', credentialsId: ${OVH_CONSUMER_KEY}, variable: 'consumer_key']
+        [$class: 'StringBinding', credentialsId: $OVH_APP_KEY, variable: 'app_key']
+        [$class: 'StringBinding', credentialsId: $OVH_APP_SECRET, variable: 'app_secret']
+        [$class: 'StringBinding', credentialsId: $OVH_CONSUMER_KEY, variable: 'consumer_key']
     ]
 
        stage('First Stage'){

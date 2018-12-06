@@ -7,6 +7,6 @@
 
 
 - name: Get list of custom templates
-  ovh: service='list' name='templates'
+  ovh: service='list' name='templates' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
   register: custom_templates
 

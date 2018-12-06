@@ -7,6 +7,7 @@
   roles:
     - { role: rl-ovh-servers-list, tags: ['ovh-servers-list'] }
     - { role: rl-ovh-templates-list, tags: ['ovh-templates-list'] }
+    - { role: rl-ovh-dedicated-server-deploy, tags: ['ovh-dedicated-server-deploy'] }
 
   vars:
       # Use
@@ -14,3 +15,7 @@
       application_key: '<YOUR APPLICATION KEY>'
       application_secret: '<YOUR APPLICATIOM SECRET>'
       consumer_key: '<YOUR CONSUMER KEY>'
+      dedicated_server_installation_template: '<OVH installation template>'
+      dedicated_server_ovh_id: '<The ID of the dedicated server>'
+      dedicated_server_hostname: '<the hostname that will be given to the server>'
+

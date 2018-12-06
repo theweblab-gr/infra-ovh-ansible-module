@@ -1,16 +1,5 @@
-# file: roles/rl-ovh-servers-list/tasks/main.yml
+# file: roles/rl-ovh-dedicated-server-deploy/tasks/main.yml
 ---
-
-- debug:
-    var: ansible_distribution
-
-- debug:
-    msg: "System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
-
-- name: Display all variables/facts known for a host
-  debug:
-    var: hostvars[inventory_hostname]
-    verbosity: 4
 
 - name: Get list of servers
   ovh: service='list' name='dedicated' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"

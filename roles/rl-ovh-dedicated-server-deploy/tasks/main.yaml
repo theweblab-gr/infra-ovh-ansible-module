@@ -1,0 +1,24 @@
+# file: roles/rl-ovh-dedicated-server-deploy/tasks/main.yml
+---
+
+- name: Install the dedicated server
+  ovh: service='install' name="{{ dedicated_server_ovh_id }}" hostname="{{ dedicated_server_hostname }}" template="{{ dedicated_server_installation_template }}" endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
+
+- name: Wait until installation is finished
+  local_action:
+    module: ovh
+    service: status
+    name: "{{ dedicated_server_ovh_id }}"
+    endpoint: "{{ datacenter_endpoint }}"
+    application_key: "{{ application_key }}"
+    application_secret: "{{ application_secret }}"
+    consumer_key: "{{ consumer_key }}"
+  register: result
+  until: result.msg.find("done") != -1
+  retries: 150
+  delay: 10
+
+- name: Get list of servers
+  ovh: service='list' name='dedicated' endpoint="{{ datacenter_endpoint }}" application_key="{{ application_key }}" application_secret="{{ application_secret }}" consumer_key="{{ consumer_key }}"
+  register: servers
+

@@ -1,0 +1,6 @@
+# file: roles/rl-ovh-dedicated-server-deploy/defaults/main.yml
+---
+datacenter_endpoint: 'PROVIDE YOUR OVH/SOYOUSTART DATACENTER CODE '
+application_key: '<PROVIDE YOUR APPLICATION KEY>'
+application_secret: '<PROVIDE YOUR APPLICATIOM SECRET>'
+consumer_key: '<PROVIDE YOUR CONSUMER KEY>'
